@@ -45,6 +45,13 @@ module Docx
           @text_nodes.map(&:content).join('')
         end
 
+        # Substitute text in text @text_nodes
+        def gsub!(match, substitute)
+          @text_nodes.each do |text_node|
+            text_node.content = text_node.content.gsub(match, substitute)
+          end
+        end
+
         def parse_formatting
           {
             italic:    !@node.xpath('.//w:i').empty?,

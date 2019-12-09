@@ -89,6 +89,13 @@ doc.paragraphs.each do |p|
   p.remove! if p.to_s =~ /TODO/
 end
 
+# Substitute text, preserving formatting
+doc.paragraphs.each do |p|
+  p.each_text_run do |tr|
+    tr.gsub!('_placeholder_', 'replacement value')
+  end
+end
+
 # Save document to specified path
 doc.save('example-edited.docx')
 ```
