@@ -52,6 +52,18 @@ module Docx
           end
         end
 
+        def clear_by(clearing_term_regex)
+          @text_nodes.each do |text_node|
+          match = text_node.content =~ clearing_term_regex
+          puts '-' * 50 
+          puts text_node
+          puts match
+            if !match == nil
+              text_node.remove
+            end
+          end
+        end
+
         def parse_formatting
           {
             italic:    !@node.xpath('.//w:i').empty?,
